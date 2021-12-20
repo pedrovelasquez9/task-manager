@@ -21,6 +21,8 @@ body {
   flex: 1;
   box-shadow: 0 -12px 0 -5px rgba(252, 251, 252, 0.7),
     0 -25px 0 -10px rgba(252, 251, 252, 0.4);
+  overflow-y: auto;
+  margin-bottom: 50px;
 }
 
 .main-title-section {
@@ -78,6 +80,11 @@ body {
 .main-task-name {
   font-weight: bold;
   font-size: 19px;
+}
+
+.main-task-description {
+  color: #ccc;
+  font-size: 13px;
 }
 
 .main-footer {

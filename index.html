@@ -6,36 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO App | Programación en Español</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Kanit:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <section class="main-title-section">
-      <h1>TODO App</h1>
+    <main class="container" id="container">
+      <section class="main-title-section">
+        <h1>Task Manager</h1>
+      </section>
+      <nav class="main-nav">
+        <ul>
+          <li>Lunes</li>
+          <li>Martes</li>
+          <li>Miércoles</li>
+          <li>Jueves</li>
+          <li>Viernes</li>
+          <li>Sábado</li>
+          <li>Domingo</li>
+        </ul>
+      </nav>
+      <section class="main-body-section">
+        <ul class="main-task-pill">
+          <li>
+            <span class="main-task-name">Mi tarea</span>
+            <span class="task-advance">0%</span>
+          </li>
+          <li>
+            <span class="main-task-name">Mi tarea</span>
+            <span class="task-advance">0%</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="main-footer"></footer>
+    <section class="footer-btn-container">
+      <button id="new-task-btn" class="action-footer-btn">+</button>
     </section>
-    <nav class="main-nav">
-      <ul>
-        <li>Lunes</li>
-        <li>Martes</li>
-        <li>Miércoles</li>
-        <li>Jueves</li>
-        <li>Viernes</li>
-        <li>Sábado</li>
-        <li>Domingo</li>
-      </ul>
-    </nav>
-    <section class="main-body-section">
-      <ul class="main-task-pill">
-        <li>
-          <span class="main-task-name">Mi tarea</span>
-          <span class="task-advance">0%</span>
-        </li>
-        <li>
-          <span class="main-task-name">Mi tarea</span>
-          <span class="task-advance">0%</span>
-        </li>
-      </ul>
-    </section>
-    <footer class="main-footer">
-      <button class="action-footer-btn">+</button>
-    </footer>
+    <div class="modal-container" id="main-modal">
+      <section class="modal-content">
+        <h2>Añadir tarea global</h2>
+        <form class="main-modal-form" action="">
+          <label>Nombre de la tarea</label>
+          <input type="text" placeholder="Mi tarea" />
+          <label>Descripción</label>
+          <input type="text" placeholder="Algo para hacer" />
+          <label>Fecha</label>
+          <input type="date" />
+          <progress class="progressbar" value="70" max="100"></progress><span>70%</span>
+          <section class="modal-btn-container">
+            <button id="main-modal-cancel-btn" class="cancel-btn">Cancelar</button>
+            <button class="submit-btn" type="submit">Añadir</button>
+          </section>
+      </section>
+    </div>
+    <script src="assets/js/index.js"></script>
   </body>
 </html>

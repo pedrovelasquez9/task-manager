@@ -8,24 +8,33 @@ let selectedDay = [
   "Sábado",
 ][new Date().getDay()];
 
-const mockData = [
-  {
-    title: "Tarea 1",
-    description: "Descripción de la tarea 1",
-    subTasks: [{ text: "Mi subtarea", status: false }],
-    progress: 0,
-  },
-];
+const mockData = {
+  Martes: [
+    {
+      title: "Tarea 1",
+      description: "Descripción de la tarea 1",
+      subTasks: [{ text: "Mi subtarea", status: false }],
+      progress: 0,
+    },
+  ],
+};
+
+console.log(JSON.stringify(mockData));
 
 const renderMainTasks = () => {
-  let mainTaskContainer = document.getElementById("main-task-list-container");
-  mockData.forEach((element) => {
-    mainTaskContainer.appendChild(document.createElement("li")).innerHTML = `
+  const data =
+    JSON.parse(localStorage.getItem("tasks"))[selectedDay] ||
+    mockData[selectedDay];
+  if (data) {
+    let mainTaskContainer = document.getElementById("main-task-list-container");
+    data.forEach((element) => {
+      mainTaskContainer.appendChild(document.createElement("li")).innerHTML = `
     <span class="main-task-name">${element.title}<br>
       <span class="main-task-description">${element.description}</span>
     </span>
     <span class="task-advance">${element.progress}%</span>`;
-  });
+    });
+  }
 };
 
 /**

@@ -46,10 +46,15 @@ body {
 }
 
 .main-nav ul li {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 100px;
   padding: 3px 15px 3px 15px;
   cursor: pointer;
+}
+
+.main-nav ul li.active,
+.main-nav ul li:hover {
+  background-color: #fff;
 }
 
 .main-task-pill {
@@ -85,6 +90,7 @@ body {
 .main-task-description {
   color: #ccc;
   font-size: 13px;
+  font-weight: normal;
 }
 
 .main-footer {
@@ -126,6 +132,23 @@ body {
   justify-content: center;
 }
 
+/* TASK PROGRESS */
+.quarter {
+  border-top: 2px solid green;
+}
+
+.half {
+  border-right: 2px solid green;
+}
+
+.third {
+  border-bottom: 2px solid green;
+}
+
+.full {
+  border-left: 2px solid green;
+}
+
 /* MODAL */
 .modal-container {
   position: fixed;
@@ -141,7 +164,7 @@ body {
 
 .modal-content {
   display: flex;
-  width: 40%;
+  width: 80%;
   flex-direction: column;
   justify-content: center;
   align-content: center;

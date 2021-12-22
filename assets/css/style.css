@@ -50,11 +50,34 @@ body {
   border-radius: 100px;
   padding: 3px 15px 3px 15px;
   cursor: pointer;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
 }
 
-.main-nav ul li.active,
-.main-nav ul li:hover {
+.main-nav ul li.active {
   background-color: #fff;
+}
+
+.main-nav ul li::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  content: "";
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.main-nav ul li::before {
+  transform-origin: right top;
+  transform: scale(0, 1);
+}
+.main-nav ul li:hover::before {
+  transform-origin: left top;
+  transform: scale(1, 1);
 }
 
 .main-task-pill {

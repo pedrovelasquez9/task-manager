@@ -30,8 +30,7 @@
         </ul>
       </nav>
       <section class="main-body-section">
-        <ul id="main-task-list-container" class="main-task-pill">
-        </ul>
+        <ul id="main-task-list-container" class="main-task-pill"></ul>
       </section>
     </main>
     <footer class="main-footer"></footer>
@@ -41,18 +40,31 @@
     <div class="modal-container" id="main-modal">
       <section class="modal-content">
         <h2>Añadir tarea global</h2>
-        <form class="main-modal-form" action="">
-          <label>Nombre de la tarea</label>
-          <input type="text" placeholder="Mi tarea" />
-          <label>Descripción</label>
-          <input type="text" placeholder="Algo para hacer" />
-          <label>Fecha</label>
-          <input type="date" />
-          <progress class="progressbar" value="70" max="100"></progress><span>70%</span>
-          <section class="modal-btn-container">
-            <button id="main-modal-cancel-btn" class="cancel-btn">Cancelar</button>
-            <button class="submit-btn" type="submit">Añadir</button>
-          </section>
+        <form class="main-modal-form" onsubmit="saveMainTask()"">
+        <label>Nombre de la tarea</label>
+        <input
+          type="text"
+          id="main-task-title"
+          placeholder="Mi tarea"
+          required
+        />
+        <label>Descripción</label>
+        <input
+          type="text"
+          id="main-task-desc"
+          placeholder="Algo para hacer"
+          required
+        />
+        <label>Fecha</label>
+        <input type="date" id="main-task-date" required />
+        <progress class="progressbar" value="70" max="100"></progress
+        ><span>70%</span>
+        <section class="modal-btn-container">
+          <button id="main-modal-cancel-btn" class="cancel-btn">
+            Cancelar
+          </button>
+          <button class="submit-btn" type="submit">Añadir</button>
+        </section>
       </section>
     </div>
     <script src="assets/js/index.js"></script>

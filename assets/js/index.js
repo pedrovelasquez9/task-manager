@@ -6,27 +6,15 @@ let selectedDay = [
   "Jueves",
   "Viernes",
   "Sábado",
-][new Date().getDay()];
+];
 
-const mockData = {
-  Martes: [
-    {
-      title: "Tarea 1",
-      description: "Descripción de la tarea 1",
-      subTasks: [{ text: "Mi subtarea", status: false }],
-      progress: 0,
-    },
-  ],
-};
-
-console.log(JSON.stringify(mockData));
-
-const renderMainTasks = () => {
-  const data =
-    JSON.parse(localStorage.getItem("tasks"))[selectedDay] ||
-    mockData[selectedDay];
+const renderMainTasks = (day = null) => {
+  const data = JSON.parse(localStorage.getItem("tasks"))[
+    !day ? selectedDay[new Date().getDay()] : day
+  ];
+  let mainTaskContainer = document.getElementById("main-task-list-container");
+  mainTaskContainer.innerHTML = "";
   if (data) {
-    let mainTaskContainer = document.getElementById("main-task-list-container");
     data.forEach((element) => {
       mainTaskContainer.appendChild(document.createElement("li")).innerHTML = `
     <span class="main-task-name">${element.title}<br>
@@ -60,6 +48,7 @@ const weekInitiation = (actualDay = null) => {
       }
       selectedDay = weekPills[i].innerText;
       weekPills[i].classList.add("active");
+      renderMainTasks(selectedDay);
     });
   }
 };
@@ -88,8 +77,49 @@ const modalInitiator = () => {
 };
 
 /**
+ * input date initial validation
+ */
+const dateInputValidation = () => {
+  let minDate = new Date().toISOString().split("T")[0];
+
+  let maxDate = new Date(
+    new Date().setDate(new Date().getDate() + (7 - new Date().getDay()))
+  )
+    .toISOString()
+    .split("T")[0];
+  console.log(minDate, maxDate);
+  let dateInput = document.querySelector("#main-task-date");
+  dateInput.setAttribute("min", minDate);
+  dateInput.setAttribute("max", maxDate);
+};
+
+/**
+ * Save main task in localStorage object
+ */
+
+const saveMainTask = () => {
+  let mainTaskTitle = document.getElementById("main-task-title").value;
+  let mainTaskDesc = document.getElementById("main-task-desc").value;
+  let mainTaskDate = new Date(
+    document.getElementById("main-task-date").value
+  ).getDay();
+  let localStorageData = JSON.parse(localStorage.getItem("tasks"));
+  if (!localStorageData[selectedDay[mainTaskDate]]) {
+    localStorageData[selectedDay[mainTaskDate]] = [];
+  }
+  localStorageData[selectedDay[mainTaskDate]].push({
+    title: mainTaskTitle,
+    description: mainTaskDesc,
+    subTasks: [],
+    progress: 0,
+  });
+  localStorage.setItem("tasks", JSON.stringify(localStorageData));
+};
+
+/**
  * Llamadas a funciones inicializadoras
  */
 modalInitiator();
 weekInitiation(new Date().getDay());
 renderMainTasks();
+dateInputValidation();

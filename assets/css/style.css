@@ -262,3 +262,18 @@ progress::-webkit-progress-value {
   background-color: #873fe6;
   border-radius: 5px;
 }
+
+/* ERROR MESSAGES */
+.no-tasks-message {
+  text-align: center;
+  margin-top: 150px;
+}
+
+/* CONTROL DE MODAL */
+#main-form-modal-section {
+  display: flex;
+}
+
+#task-form-modal-section {
+  display: none;
+}

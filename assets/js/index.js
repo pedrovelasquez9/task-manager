@@ -1,4 +1,4 @@
-let selectedDay = [
+const selectedDay = [
   "Domingo",
   "Lunes",
   "Martes",
@@ -8,6 +8,13 @@ let selectedDay = [
   "Sábado",
 ];
 
+/**
+ *
+ * @param {*} day
+ * Renderiza las tareas del día seleccionado a partir de la data en localstorage
+ *
+ */
+
 const renderMainTasks = (day = null) => {
   const data = JSON.parse(localStorage.getItem("tasks"))[
     !day ? selectedDay[new Date().getDay()] : day
@@ -15,13 +22,26 @@ const renderMainTasks = (day = null) => {
   let mainTaskContainer = document.getElementById("main-task-list-container");
   mainTaskContainer.innerHTML = "";
   if (data) {
-    data.forEach((element) => {
-      mainTaskContainer.appendChild(document.createElement("li")).innerHTML = `
+    data.forEach((element, index) => {
+      // TODO: refactor this crap
+      let liElem = document.createElement("li");
+      liElem.setAttribute("id", index);
+      liElem.addEventListener("click", (evt) => {
+        openTaskModal(
+          evt.target.id,
+          !day ? selectedDay[new Date().getDay()] : day
+        );
+      });
+      mainTaskContainer.appendChild(liElem).innerHTML = `
     <span class="main-task-name">${element.title}<br>
       <span class="main-task-description">${element.description}</span>
     </span>
     <span class="task-advance">${element.progress}%</span>`;
     });
+  } else {
+    const errorMsg = "No tienes tareas para este día";
+    mainTaskContainer.innerHTML = `
+    <h1 class="no-tasks-message">${errorMsg}</h1>`;
   }
 };
 
@@ -46,9 +66,9 @@ const weekInitiation = (actualDay = null) => {
       for (let j = 0; j < weekPills.length; j++) {
         weekPills[j].classList.remove("active");
       }
-      selectedDay = weekPills[i].innerText;
+      let dayPill = weekPills[i].innerText;
       weekPills[i].classList.add("active");
-      renderMainTasks(selectedDay);
+      renderMainTasks(dayPill);
     });
   }
 };
@@ -57,9 +77,10 @@ const weekInitiation = (actualDay = null) => {
  * Inicializa el control de la modal a través de los elementos/eventos del DOM
  */
 const modalInitiator = () => {
-  let modalElem = document.querySelector("#main-modal");
-  let mainModalBtn = document.querySelector("#new-task-btn");
-  let cancelMainModalBtn = document.querySelector("#main-modal-cancel-btn");
+  const modalElem = document.querySelector("#main-modal");
+  const mainModalBtn = document.querySelector("#new-task-btn");
+  const cancelMainModalBtn = document.querySelector("#main-modal-cancel-btn");
+
   mainModalBtn.addEventListener("click", () => {
     modalElem.style.display = "block";
   });
@@ -77,6 +98,18 @@ const modalInitiator = () => {
 };
 
 /**
+ * Open tasks modal
+ */
+
+const openTaskModal = (id, day) => {
+  const modalElem = document.querySelector("#main-modal");
+  console.log(id, day);
+  modalElem.style.display = "block";
+  document.querySelector("#main-form-modal-section").style = "display: none";
+  document.querySelector("#task-form-modal-section").style = "display: flex";
+};
+
+/**
  * input date initial validation
  */
 const dateInputValidation = () => {
@@ -87,7 +120,6 @@ const dateInputValidation = () => {
   )
     .toISOString()
     .split("T")[0];
-  console.log(minDate, maxDate);
   let dateInput = document.querySelector("#main-task-date");
   dateInput.setAttribute("min", minDate);
   dateInput.setAttribute("max", maxDate);

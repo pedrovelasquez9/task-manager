@@ -277,3 +277,61 @@ progress::-webkit-progress-value {
 #task-form-modal-section {
   display: none;
 }
+
+/* SUBTASKS */
+
+.task-modal-form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 80%;
+  width: 50%;
+}
+
+.subtask-form-section-container {
+  display: flex;
+  flex-direction: row;
+  height: 94%;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.subtask-input,
+.subtask-input:focus-visible {
+  border: none;
+  border-bottom: 1px solid purple;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  outline: none;
+  width: 75%;
+}
+
+.subtask-checkbox {
+  width: 15%;
+}
+
+.new-subtask-section-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.delete-icon {
+  color: #aaa;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  color: rgb(194, 103, 103);
+}

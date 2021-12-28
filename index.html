@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Acme&family=Kanit:wght@300&display=swap"
       rel="stylesheet"
     />
+    <script src="https://kit.fontawesome.com/722739ea6b.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <main class="container" id="container">
@@ -69,19 +70,23 @@
         </form>
       </section>
       <!-- MODAL DE CHECKLISTS -->
-      <section class="modal-content" id="task-form-modal-section">
+      <section class="modal-content" >
         <h2>Añadir tareas para esta lista</h2>
-        <form class="main-modal-form" onsubmit="">
+        <form id="task-form-modal-section" class="task-modal-form" onsubmit="saveSubtasks()">
+          <section id="form-section-container" class="subtask-form-section-container">
+
+          </section>
+        
         <section class="modal-btn-container">
-          <button id="main-modal-cancel-btn" class="cancel-btn">
+          <button id="task-modal-cancel-btn" class="cancel-btn">
             Cancelar
           </button>
-          <button id="main-modal-cancel-btn" class="cancel-btn">
+          <button class="submit-btn" type="submit" id="task-modal-save-btn" class="cancel-btn">
             Guardar
           </button>
-          <button class="submit-btn" type="submit">Añadir</button>
+          <button id="add-subtask-btn" class="submit-btn">Añadir</button>
         </section>
-        </form>
+      </form>
       </section>
     </div>
     <script src="assets/js/index.js"></script>

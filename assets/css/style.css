@@ -300,6 +300,7 @@ progress::-webkit-progress-value {
   align-content: center;
   justify-content: center;
   overflow: auto;
+  width: 100%;
 }
 
 .subtask-input,

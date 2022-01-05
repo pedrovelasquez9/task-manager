@@ -34,6 +34,7 @@ const renderMainTasks = (day = null) => {
       mainTaskContainer.appendChild(liElem).innerHTML = `
     <span class="main-task-name">${element.title}<br>
       <span class="main-task-description">${element.description}</span>
+      <span class="main-task-description">${element.subTasks.length} subtarea(s) creadas</span>
     </span>
     <span class="task-advance" id="progress-${chosenDay}-${index}">${element.progress}%</span>`;
     });
@@ -84,6 +85,8 @@ const modalInitiator = () => {
 
   mainModalBtn.addEventListener("click", () => {
     modalElem.style.display = "block";
+    document.querySelector("#main-form-modal-section").style = "display: flex";
+    document.querySelector("#task-form-modal-section").style = "display: none";
   });
 
   window.addEventListener("click", (event) => {

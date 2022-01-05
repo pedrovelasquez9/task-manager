@@ -114,6 +114,7 @@ body {
   color: #ccc;
   font-size: 13px;
   font-weight: normal;
+  display: flex;
 }
 
 .main-footer {

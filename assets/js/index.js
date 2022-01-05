@@ -165,6 +165,10 @@ const saveMainTask = () => {
 const loadTasks = () => {
   const tasks = JSON.parse(localStorage.getItem("tasks"));
   const subTasks = tasks[taskSelectedDay][selectedId].subTasks;
+  const formSectionContainer = document.getElementById(
+    "form-section-container"
+  );
+  formSectionContainer.textContent = "";
   subTasks.forEach((item) => {
     addNewSubtask(item);
   });
